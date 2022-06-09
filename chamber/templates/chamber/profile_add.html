@@ -1,0 +1,80 @@
+{% extends "base/base.html" %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12" style="padding-top: 60px;">
+            <div class="card">
+              <div class="card-header">
+                Patent Profile Form
+              </div>
+              <div class="card-body">
+                <form class="row g-3">
+                  <div class="col-md-6">
+                    <label for="id" class="form-label">Patent ID</label>
+                    <input type="number" class="form-control" id="id">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="book" class="form-label">Book</label>
+                    <input type="text" class="form-control" id="book">
+                  </div>
+                  <div class="col-12">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Mr/Mrs. Abcd Xyz">
+                  </div>
+                  <div class="col-12">
+                    <label for="inputAddress2" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="">
+                  </div>
+                  <div class="col-12">
+                    <label for="father_name" class="form-label">Father's Name</label>
+                    <input type="text" class="form-control" id="father_name" placeholder="">
+                  </div>
+                  <div class="col-12">
+                    <label for="mother_name" class="form-label">Mother's Name</label>
+                    <input type="text" class="form-control" id="mother_name" placeholder="">
+                  </div>
+                  <div class="col-6">
+                    <label for="age" class="form-label">Name</label>
+                    <input type="date" class="form-control" id="date" >
+                  </div>
+                  <div class="col-6">
+                    <label for="blood" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Mr/Mrs. Abcd Xyz">
+                  </div>
+                  <div class="col-md-12">
+                    <label for="occ" class="form-label">Occumation</label>
+                    <input type="text" class="form-control" id="occ">
+                  </div>
+                  <div class="col-2">
+                    <label for="m_status" class="form-label">Marital Status</label>
+                    <input type="text" class="form-control" id="m_status" placeholder="">
+                  </div>
+                  <div class="col-10">
+                    <label for="spouse_name" class="form-label">Spouse Name</label>
+                    <input type="text" class="form-control" id="mother_name" placeholder="">
+                  </div>
+                  <div class="col-12">
+                    <label for="contact_name" class="form-label">Contact Person</label>
+                    <input type="text" class="form-control" id="contact_name" placeholder="">
+                  </div>
+                  <div class="col-12">
+                    <label for="phone" class="form-label">Contact No</label>
+                    <input type="text" class="form-control" id="phone" placeholder="01925XXXXXX">
+                  </div>
+
+                  <div class="col-12">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block after_js %}
+
+{% endblock %}

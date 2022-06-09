@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    {% include 'base/header.html' %}
+    {% block head %}
+    {% endblock %}
+
+</head>
+<body>
+    <div class="container">
+      <header class="mb-auto">
+        <!-- Nav Start-->
+        {% include 'base/nav.html' %}
+        <!-- Nav Ends Hare-->
+      </header>
+
+        <!-- PAGE CONTAINER-->
+        <main class="px-3">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <!--Page Container end hare-->
+
+        <!--JS-->
+        {% include 'base/js.html' %}
+        {% block after_js %}
+        {% endblock %}
+        <!--JS ends have-->
+
+        <!--Footer-->
+        {% include 'base/footer.html' %}
+        <!--Footer Ends Hare-->
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
