@@ -21,6 +21,7 @@ class Profile(models.Model):
     )
 
     book_no = models.CharField(max_length=10)
+    htid = models.CharField(max_length=10, null=True, blank=True)
     name = models.CharField(max_length=254)
     address = models.CharField(max_length=254, null=True, blank=True)
     father_name = models.CharField(max_length=254, null=True, blank=True)
