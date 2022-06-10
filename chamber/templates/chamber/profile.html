@@ -10,7 +10,9 @@
               </div>
               <div class="card-body">
                   <div class="col-md-12">
-                    Profile Information
+                      <li>Profile ID: {{ profile.id }}</li>
+                      <li>Book No: {{ profile.book_no }}</li>
+                      <li>Name: {{ profile.name }}</li>
                   </div>
               </div>
             </div>
@@ -21,7 +23,29 @@
               </div>
               <div class="card-body">
                   <div class="col-md-12">
-                    Profile Information
+                    {% for obj in prescriptions %}
+                        <div>
+                            <p>Date: {{ obj.created_at }}</p>
+                            <p>
+                                {% if obj.text %}
+                                    {{ obj.text }}
+                                {% endif %}
+                            </p>
+
+                            <p>
+                                {% if obj.image %}
+                                    {{ obj.image.url }}
+                                {% endif %}
+                            </p>
+
+                            <p>
+                                {% if obj.pdf %}
+                                    {{ obj.pdf.url }}
+                                {% endif %}
+                            </p>
+                        </div>
+
+                    {% endfor %}
                   </div>
               </div>
             </div>

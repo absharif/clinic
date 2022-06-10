@@ -16,7 +16,6 @@ def search_profile(request):
                 obj = Profile.objects.get(id=text)
                 if obj:
                     profile_list.append(obj)
-
             except:
                 objects = Profile.objects.filter(Q(name__icontains=text) | Q(phone__icontains=text))
                 if objects:
@@ -32,7 +31,10 @@ def search_profile(request):
 
 
 def profile(request, id):
-    return render(request, 'chamber/profile.html')
+    profile_list = Profile.objects.get(id=id)
+    prescriptions = Prescription.objects.filter(profile=profile).order_by('-created_at')
+
+    return render(request, 'chamber/profile.html', {'profile': profile_list, 'prescriptions': prescriptions})
 
 
 def profile_add(request):

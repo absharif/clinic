@@ -34,7 +34,7 @@
                     {% for profile in profiles %}
                     <tr>
                       <th>{{ profile.id }}</th>
-                      <td>{{ profile.name }}</td>
+                        <td><a href="../profile/{{ profile.id }}/" >{{ profile.name }}</a></td>
                       <td>{{ profile.phone }}</td>
                       <td>{{ profile.book_no }}</td>
                     </tr>
