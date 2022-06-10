@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from .forms import Search
+from .forms import *
 from .models import *
 from django.db.models import Q
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
 # Create your views here.
 
 
@@ -32,13 +34,25 @@ def search_profile(request):
 
 def profile(request, id):
     profile_list = Profile.objects.get(id=id)
-    prescriptions = Prescription.objects.filter(profile=profile).order_by('-created_at')
-
+    prescriptions = Prescription.objects.filter(profile=profile_list).order_by('-created_at')
     return render(request, 'chamber/profile.html', {'profile': profile_list, 'prescriptions': prescriptions})
 
 
 def profile_add(request):
-    return render(request, 'chamber/profile_add.html')
+    if request.method == 'POST':
+        form = ProfileForm(data=request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.created_by = request.user
+            obj.save()
+            print(obj.id)
+            obj = int(obj.id)
+            print(type(obj))
+            print(obj)
+        return HttpResponseRedirect(reverse('profile', args=[obj]))
+    else:
+        form = ProfileForm()
+    return render(request, 'chamber/profile_add.html', {'form': form})
 
 
 def profile_edit(request, id):

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Profile(models.Model):
     BLOOD_GROUP = (
@@ -21,7 +21,7 @@ class Profile(models.Model):
     )
 
     book_no = models.CharField(max_length=10)
-    hiveid = models.CharField(max_length=10, null=True, blank=True)
+    hive_id = models.CharField(max_length=10, null=True, blank=True)
     name = models.CharField(max_length=254)
     address = models.CharField(max_length=254, null=True, blank=True)
     father_name = models.CharField(max_length=254, null=True, blank=True)
@@ -33,6 +33,8 @@ class Profile(models.Model):
     occupation = models.CharField(max_length=254, null=True, blank=True)
     contact_person = models.CharField(max_length=254, null=True, blank=True)
     phone = models.CharField(max_length=11, null=True, blank=True)
+    created_at = models.DateField(auto_now_add=True, null=True, blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile_created_by', blank=True, null=True)
 
     def __str__(self):
         return str(self.id) + '. ' + self.name
@@ -44,7 +46,7 @@ class Prescription(models.Model):
     image = models.FileField(upload_to='prescription/image/', blank=True, null=True)
     pdf = models.FileField(upload_to='prescription/pdf', blank=True, null=True)
     created_at = models.DateField(auto_now_add=True, null=True, blank=True)
-    created_by = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='created_by', null=True, blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_by', null=True, blank=True)
 
     def __str__(self):
         return self.profile.name + ' - ' + str(self.id)

@@ -9,58 +9,72 @@
                 Patent Profile Form
               </div>
               <div class="card-body">
-                <form class="row g-3">
+                <form class="row g-3" method="POST">
+                  {% csrf_token %}
                   <div class="col-md-6">
-                    <label for="id" class="form-label">Patent ID</label>
-                    <input type="number" class="form-control" id="id">
+                    <label class="form-label">Hive ID</label>
+                    {{ form.hive_id|add_class:"form-control" }}
+                    {{ form.hive_id.errors }}
                   </div>
                   <div class="col-md-6">
-                    <label for="book" class="form-label">Book</label>
-                    <input type="text" class="form-control" id="book">
+                    <label class="form-label">Book No</label>
+                    {{ form.book_no|add_class:"form-control" }}
+                    {{ form.book_no.errors }}
                   </div>
                   <div class="col-12">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Mr/Mrs. Abcd Xyz">
+                    <label class="form-label">Name</label>
+                    {{ form.name|add_class:"form-control" }}
+                    {{ form.name.errors }}
                   </div>
                   <div class="col-12">
-                    <label for="inputAddress2" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="">
+                    <label class="form-label">Address</label>
+                    {{ form.address|add_class:"form-control" }}
+                    {{ form.address.errors }}
                   </div>
                   <div class="col-12">
-                    <label for="father_name" class="form-label">Father's Name</label>
-                    <input type="text" class="form-control" id="father_name" placeholder="">
+                    <label  class="form-label">Father's Name</label>
+                    {{ form.father_name|add_class:"form-control" }}
+                    {{ form.father_name.errors }}
                   </div>
                   <div class="col-12">
-                    <label for="mother_name" class="form-label">Mother's Name</label>
-                    <input type="text" class="form-control" id="mother_name" placeholder="">
+                    <label class="form-label">Mother's Name</label>
+                    {{ form.mother_name|add_class:"form-control" }}
+                    {{ form.mother_name.errors }}
                   </div>
                   <div class="col-6">
-                    <label for="age" class="form-label">Name</label>
-                    <input type="date" class="form-control" id="date" >
+                    <label class="form-label">Age</label>
+                    {{ form.age|add_class:"form-control"|attr:"type:date" }}
+                    {{ form.age.errors }}
                   </div>
                   <div class="col-6">
-                    <label for="blood" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Mr/Mrs. Abcd Xyz">
+                    <label class="form-label">Blood Group</label>
+                    {{ form.blood_group|add_class:"form-control" }}
+                    {{ form.blood_group.errors }}
                   </div>
                   <div class="col-md-12">
-                    <label for="occ" class="form-label">Occumation</label>
-                    <input type="text" class="form-control" id="occ">
+                    <label class="form-label">Occupation</label>
+                    {{ form.occupation|add_class:"form-control" }}
+                    {{ form.occupation.errors }}
                   </div>
                   <div class="col-2">
-                    <label for="m_status" class="form-label">Marital Status</label>
-                    <input type="text" class="form-control" id="m_status" placeholder="">
+                    <label class="form-label">Marital Status</label>
+                    {{ form.marital_status|add_class:"form-control" }}
+                    {{ form.marital_status.errors }}
                   </div>
                   <div class="col-10">
-                    <label for="spouse_name" class="form-label">Spouse Name</label>
-                    <input type="text" class="form-control" id="mother_name" placeholder="">
+                    <label class="form-label">Spouse Name</label>
+                    {{ form.spouse_name|add_class:"form-control" }}
+                    {{ form.spouse_name.errors }}
                   </div>
                   <div class="col-12">
-                    <label for="contact_name" class="form-label">Contact Person</label>
-                    <input type="text" class="form-control" id="contact_name" placeholder="">
+                    <label class="form-label">Contact Person</label>
+                    {{ form.contact_person|add_class:"form-control" }}
+                    {{ form.contact_person.errors }}
                   </div>
                   <div class="col-12">
-                    <label for="phone" class="form-label">Contact No</label>
-                    <input type="text" class="form-control" id="phone" placeholder="01925XXXXXX">
+                    <label class="form-label">Contact No</label>
+                    {{ form.phone|add_class:"form-control" }}
+                    {{ form.phone.errors }}
                   </div>
 
                   <div class="col-12">
