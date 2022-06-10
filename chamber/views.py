@@ -1,10 +1,34 @@
 from django.shortcuts import render
-
+from .forms import Search
+from .models import *
+from django.db.models import Q
 # Create your views here.
 
 
 def search_profile(request):
-    return render(request, 'chamber/search_profile.html')
+    profile_list = []
+    if request.method == 'POST':
+        form = Search(data=request.POST)
+        if form.is_valid():
+            text = form.cleaned_data['q']
+
+            try:
+                obj = Profile.objects.get(id=text)
+                if obj:
+                    profile_list.append(obj)
+
+            except:
+                objects = Profile.objects.filter(Q(name__icontains=text) | Q(phone__icontains=text))
+                if objects:
+                    for obj in objects:
+                        profile_list.append(obj)
+    else:
+        form = Search()
+        objects = Profile.objects.all().order_by('-id')[:10]
+        for obj in objects:
+            profile_list.append(obj)
+
+    return render(request, 'chamber/search_profile.html', {'form': form, 'profiles': profile_list})
 
 
 def profile(request, id):
