@@ -45,10 +45,7 @@ def profile_add(request):
             obj = form.save(commit=False)
             obj.created_by = request.user
             obj.save()
-            print(obj.id)
             obj = int(obj.id)
-            print(type(obj))
-            print(obj)
         return HttpResponseRedirect(reverse('profile', args=[obj]))
     else:
         form = ProfileForm()
@@ -56,24 +53,68 @@ def profile_add(request):
 
 
 def profile_edit(request, id):
-    return render(request, 'chamber/profile_add.html')
+    obj = Profile.objects.get(id=id)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=obj)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.created_by = request.user
+            obj.save()
+            obj = int(obj.id)
+        return HttpResponseRedirect(reverse('profile', args=[obj]))
+    else:
+        form = ProfileForm(instance=obj)
+    return render(request, 'chamber/profile_add.html', {'form': form})
 
 
 def profile_delete(request, id):
-    pass
+    return render(request, 'chamber/delete.html', {'id': id})
+
+
+def profile_delete_confirm(request, id):
+    obj = Profile.objects.get(id=id)
+    obj.delete()
+    return HttpResponseRedirect(reverse('search_profile'))
 
 
 def prescription(request, id):
     pass
 
 
-def prescription_add(request):
-    return render(request, 'chamber/prescription_add.html')
+def prescription_add(request, profile_id):
+    if request.method == 'POST':
+        form = PrescriptionForm(data=request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.created_by = request.user
+            profile_obj = Profile.objects.get(id=profile_id)
+            obj.profile = profile_obj
+            obj.save()
+            obj = int(obj.profile.id)
+        return HttpResponseRedirect(reverse('profile', args=[obj]))
+    else:
+        form = PrescriptionForm()
+    return render(request, 'chamber/prescription_add.html', {'form': form})
 
 
-def prescription_edit(request, id):
-    return render(request, 'chamber/profile_add.html')
+def prescription_edit(request, profile_id, id):
+    obj = Prescription.objects.get(id=id)
+    if request.method == 'POST':
+        form = PrescriptionForm(request.POST, request.FILES, instance=obj)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.save()
+        return HttpResponseRedirect(reverse('profile', args=[profile_id]))
+    else:
+        form = PrescriptionForm(instance=obj)
+    return render(request, 'chamber/prescription_add.html', {'form': form})
 
 
-def prescription_delete(request, id):
-    pass
+def prescription_delete(request, profile_id, id):
+    return render(request, 'chamber/prescription_delete.html', {'id': id, 'profile_id': profile_id})
+
+
+def prescription_confirm_delete(request, profile_id, id):
+    obj = Prescription.objects.get(id=id)
+    obj.delete()
+    return HttpResponseRedirect(reverse('profile', args=[profile_id]))

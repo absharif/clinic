@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-    return redirect('login')
+    return redirect('search_profile')
 
 
 def user_login(request):

@@ -6,7 +6,7 @@
         <div class="col-md-12" style="padding-top: 60px;">
             <div class="card">
               <div class="card-header">
-                Profile Information
+                  Profile Information  <button><a href="{% url 'profile_edit' id=profile.id  %}">Edit</a></button> <button><a href="{% url 'profile_delete' id=profile.id  %}">Delete</a></button>
               </div>
               <div class="card-body">
                   <div class="col-md-12">
@@ -19,13 +19,14 @@
             <br><br>
             <div class="card">
               <div class="card-header">
-                Prescription
+                Prescription  <button><a href="{% url 'prescription_add' profile_id=profile.id  %}">Add New Prescription</a></button>
               </div>
               <div class="card-body">
                   <div class="col-md-12">
                     {% for obj in prescriptions %}
                         <div>
-                            <p>Date: {{ obj.created_at }}</p>
+                            <p>Date: {{ obj.created_at }} <button><a href="{% url 'prescription_edit' profile_id=profile.id id=obj.id  %}">Edit</a></button> <button><a href="{% url 'prescription_delete' profile_id=profile.id id=obj.id  %}">Delete</a></button> </p>
+                            <hr>
                             <p>
                                 {% if obj.text %}
                                     {{ obj.text }}

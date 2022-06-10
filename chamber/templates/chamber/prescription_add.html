@@ -9,23 +9,28 @@
                 Prescription Form
               </div>
               <div class="card-body">
-                <form class="row g-3">
-                  <div class="col-md-6">
-                    <label for="id" class="form-label">Patent ID</label>
-                    <input type="number" class="form-control" id="id">
-                  </div>
-                  <div class="col-md-6">
+                <form class="row g-3"method="POST">
+                  {% csrf_token %}
+                  <div class="col-md-12">
                     <label for="book" class="form-label">Text</label>
-                    <input type="text" class="form-control" id="book">
+                    {{ form.text|add_class:"form-control" }}
+                    {{ form.text.errors }}
                   </div>
-                  <div class="col-12">
+
+
+                  <p>
+                    <br><br>
                     <label for="name" class="form-label">Upload PDF</label>
-                    <input type="text" class="form-control" id="name">
-                  </div>
-                  <div class="col-12">
+                    {{ form.pdf }}
+                    {{ form.pdf.errors }}
+                  </p>
+
+                  <p>
+                    <br><br>
                     <label for="inputAddress2" class="form-label">Upload Photo</label>
-                    <input type="text" class="form-control" id="inputAddress2">
-                  </div>
+                    {{ form.image }}
+                    {{ form.image.errors }}
+                  </p>
 
                   <div class="col-12">
                     <br>
