@@ -90,11 +90,11 @@ def prescription_add(request, profile_id):
             obj.created_by = request.user
             profile_obj = Profile.objects.get(id=profile_id)
             obj.profile = profile_obj
-            #
-            # if 'pdf' in request.FILES:
-            #     obj.pdf = request.FILES['pdf']
-            # if 'image' in request.FILES:
-            #     obj.image = request.FILES['image']
+
+            if 'pdf' in request.FILES:
+                obj.pdf = request.FILES['pdf']
+            if 'image' in request.FILES:
+                obj.image = request.FILES['image']
 
             obj.save()
             obj = int(obj.profile.id)
