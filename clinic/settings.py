@@ -116,7 +116,7 @@ MEDIA_URL = '/media/'
 if DEBUG:
     MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn/static_root/')
 else:
-    MEDIA_ROOT = '/home/ubuntu/myprojectdir/static_cdn/media_root/'
+    MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn/static_root/')
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = ''
