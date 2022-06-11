@@ -40,7 +40,7 @@ class Profile(models.Model):
         ('Unmarried', 'Unmarried'),
     )
 
-    book_no = models.CharField(max_length=10)  # BookNo, on_delete=models.CASCADE
+    book_no = models.CharField(max_length=10, blank=True, null=True)  # BookNo, on_delete=models.CASCADE
     hive_id = models.CharField(max_length=10, null=True, blank=True)
     name = models.CharField(max_length=254)
     address = models.CharField(max_length=254, null=True, blank=True)
