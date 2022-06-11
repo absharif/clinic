@@ -34,7 +34,7 @@ def search_profile(request):
 
 def profile(request, id):
     profile_list = Profile.objects.get(id=id)
-    prescriptions = Prescription.objects.filter(profile=profile_list).order_by('-created_at')
+    prescriptions = Prescription.objects.filter(profile=profile_list).order_by('-id')
     return render(request, 'chamber/profile.html', {'profile': profile_list, 'prescriptions': prescriptions})
 
 
@@ -97,8 +97,7 @@ def prescription_add(request, profile_id):
                 obj.image = request.FILES['image']
 
             obj.save()
-            obj = int(obj.profile.id)
-        return HttpResponseRedirect(reverse('profile', args=[obj]))
+        return HttpResponseRedirect(reverse('profile', args=[profile_id]))
     else:
         form = PrescriptionForm()
     return render(request, 'chamber/prescription_add.html', {'form': form})
@@ -109,7 +108,6 @@ def prescription_edit(request, profile_id, id):
     if request.method == 'POST':
         form = PrescriptionForm(request.POST, request.FILES, instance=obj)
         if form.is_valid():
-            obj = form.save(commit=False)
             obj.save()
         return HttpResponseRedirect(reverse('profile', args=[profile_id]))
     else:
