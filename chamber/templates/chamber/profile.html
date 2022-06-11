@@ -35,13 +35,14 @@
 
                             <p>
                                 {% if obj.image %}
-                                    {{ obj.image.url }}
+
+                                    <img src="{{ obj.image.url }}"/>
                                 {% endif %}
                             </p>
 
                             <p>
                                 {% if obj.pdf %}
-                                    {{ obj.pdf.url }}
+                                    <embed src="{{ obj.pdf.url }}"  height="1000px" width="100%"/>{% endif %}
                                 {% endif %}
                             </p>
                         </div>
