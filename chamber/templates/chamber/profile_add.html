@@ -26,10 +26,15 @@
                     {{ form.name|add_class:"form-control" }}
                     {{ form.name.errors }}
                   </div>
-                  <div class="col-12">
+                  <div class="col-10">
                     <label class="form-label">Address</label>
                     {{ form.address|add_class:"form-control" }}
                     {{ form.address.errors }}
+                  </div>
+                  <div class="col-2">
+                    <label class="form-label">Address</label>
+                    {{ form.district|add_class:"form-control" }}
+                    {{ form.district.errors }}
                   </div>
                   <div class="col-12">
                     <label  class="form-label">Father's Name</label>
