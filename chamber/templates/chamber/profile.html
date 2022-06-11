@@ -25,8 +25,11 @@
                   <div class="col-md-12">
                     {% for obj in prescriptions %}
                         <div>
-                            <p>Date: {{ obj.created_at }} <button><a href="{% url 'prescription_edit' profile_id=profile.id id=obj.id  %}">Edit</a></button> <button><a href="{% url 'prescription_delete' profile_id=profile.id id=obj.id  %}">Delete</a></button> </p>
+
                             <hr>
+                            <h5>Date: {{ obj.created_at }} </h5> <button><a href="{% url 'prescription_edit' profile_id=profile.id id=obj.id  %}">Edit</a></button> <button><a href="{% url 'prescription_delete' profile_id=profile.id id=obj.id  %}">Delete</a></button>
+                            <hr>
+
                             <p>
                                 {% if obj.text %}
                                     {{ obj.text }}
