@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class District(models.Model):
     name = models.CharField(max_length=120)
 
@@ -65,7 +64,7 @@ class Prescription(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     text = models.TextField(blank=True, null=True)
     image = models.FileField(upload_to='prescription/image/', blank=True, null=True)
-    pdf = models.FileField(upload_to='prescription/pdf', blank=True, null=True)
+    pdf = models.FileField(upload_to='prescription/pdf/', blank=True, null=True)
     created_at = models.DateField(auto_now_add=True, null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_by', null=True, blank=True)
 

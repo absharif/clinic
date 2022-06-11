@@ -83,12 +83,19 @@ def prescription(request, id):
 
 def prescription_add(request, profile_id):
     if request.method == 'POST':
-        form = PrescriptionForm(data=request.POST)
+        form = PrescriptionForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save(commit=False)
+
             obj.created_by = request.user
             profile_obj = Profile.objects.get(id=profile_id)
             obj.profile = profile_obj
+            #
+            # if 'pdf' in request.FILES:
+            #     obj.pdf = request.FILES['pdf']
+            # if 'image' in request.FILES:
+            #     obj.image = request.FILES['image']
+
             obj.save()
             obj = int(obj.profile.id)
         return HttpResponseRedirect(reverse('profile', args=[obj]))
@@ -106,7 +113,7 @@ def prescription_edit(request, profile_id, id):
             obj.save()
         return HttpResponseRedirect(reverse('profile', args=[profile_id]))
     else:
-        form = PrescriptionForm(instance=obj)
+        form = PrescriptionForm(request.POST or None, instance=obj)
     return render(request, 'chamber/prescription_add.html', {'form': form})
 
 
