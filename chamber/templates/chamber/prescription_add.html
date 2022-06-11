@@ -9,7 +9,7 @@
                 Prescription Form
               </div>
               <div class="card-body">
-                <form class="row g-3"method="POST">
+                <form class="row g-3" enctype="multipart/form-data" method="POST">
                   {% csrf_token %}
                   <div class="col-md-12">
                     <label for="book" class="form-label">Text</label>
