@@ -19,7 +19,14 @@ class BookAdmin(ImportExportModelAdmin):
     list_display = ('name',)
 
 
+class UserAdmin(ImportExportModelAdmin):
+    list_display = ('username', )
+
+
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Prescription, PrescriptionAdmin)
 admin.site.register(District, DistrictAdmin)
 admin.site.register(BookNo, BookAdmin)
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
