@@ -28,5 +28,5 @@ admin.site.register(Prescription, PrescriptionAdmin)
 admin.site.register(District, DistrictAdmin)
 admin.site.register(BookNo, BookAdmin)
 
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+# admin.site.unregister(User)
+# admin.site.register(User, UserAdmin)
